@@ -1,0 +1,26 @@
+Finnish invoice LaTeX class
+===========================
+
+Goals
+-----
+
+Finnish invoice LaTeX class compliant with Federation of Finnish Financial Services SEPA invoice template [1]. 
+
+Usage
+-----
+
+Fill in the macros in the PAYMENT DETAILS section. Fill in the products or services in the INVOICE section, which is just a LaTeX table. 
+
+Select language by defining e.g. \def\finnish{}. Text strings are also marked for TRANSLATION in the preamble. 
+
+References
+----------
+
+[1] https://www.fkl.fi/teemasivut/sepa/tekninen_dokumentaatio/Sivut/default.aspx
+
+Todo
+----
+
+Create a proper LaTeX class cls file.
+Output also .txt for email inclusion.
+

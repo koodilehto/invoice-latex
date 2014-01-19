@@ -1,0 +1,343 @@
+\documentclass[a4paper]{article}
+
+\usepackage[margin=3.4mm, top=10mm, bottom=0mm]{geometry}
+\pagestyle{empty}
+
+\usepackage[scaled]{helvet}
+\renewcommand*\familydefault{\sfdefault}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{url}
+
+\usepackage[absolute]{textpos}
+\setlength{\TPHorizModule}{1mm}
+\setlength{\TPVertModule}{1mm}
+
+\usepackage{eurosym}
+\usepackage{graphicx}
+
+% TRANSLATION
+
+\def\finnish{}
+%\def\english{}
+
+% Finnish language used.
+\ifdefined\finnish
+\usepackage[finnish]{babel}
+\newcommand{\theinvoice}{Lasku}
+\newcommand{\thebusinessid}{Y-tunnus}
+\newcommand{\thevat}{VAT}
+\newcommand{\thedomicile}{Kotipaikka}
+\newcommand{\theemail}{E-mail}
+\newcommand{\thephone}{Puh.}
+\newcommand{\thebank}{Pankki}
+\newcommand{\thecomplaints}{Huomautusaika}
+\newcommand{\theterms}{Maksuehdot}
+\newcommand{\theinterest}{Viivästyskorko}
+\newcommand{\thepayerid}{Asiakas}
+\newcommand{\theservice}{Tuote/palvelu}
+\newcommand{\theexcleur}{Veroton \euro}
+\newcommand{\thevatpercent}{ALV-\%}
+\newcommand{\thevateur}{ALV \euro}
+\newcommand{\theincleur}{Verollinen \euro}
+\newcommand{\thetotal}{Yhteensä}
+\newcommand{\thepayable}{Maksettava}
+\newcommand{\therecipientsaccount}{Saajan tilinumero\\ Mottagarens kontonummer}
+\newcommand{\therecipient}{Saaja\\ Mottagare}
+\newcommand{\thepayer}{Maksajan nimi ja osoite\\ Betalarens namn och adress}
+\newcommand{\thesignature}{Allekirjoitus\\ Underskrift}
+\newcommand{\thecredittransfer}{TILISIIRTO. \ GIRERING}
+\newcommand{\thefromaccount}{Tililtä nro\\ Från konto nr}
+\newcommand{\therefno}{Viitenumero\\ Ref. nr}
+\newcommand{\thedate}{Päivämäärä}
+\newcommand{\theduedate}{Eräpäivä\\ Förfallodag}
+\newcommand{\theduedateup}{Eräpäivä} % This is used also in the upper part.
+\newcommand{\theeuro}{Euro}
+\newcommand{\thepaymentsum}{Maksettava}
+\newcommand{\theinvoicenumber}{Laskunumero}
+\newcommand{\theinvoicenumberup}{Laskun nro} % Different in the upper part.
+\newcommand{\therefnoreminder}{Viitenumero mainittava maksaessa!}
+\newcommand{\thetermsofpayment}{Maksu välitetään saajalle maksujenvälityksen ehtojen mukaisesti ja vain maksajan ilmoittaman tilinumeron perusteella. \\
+Betalningen förmedlas till mottagaren enligt villkoren för betalningsförmedling och endast till det kontonummer som betalaren angivit.}
+\fi % End Finnish language definitions.
+
+% English language used.
+\ifdefined\english
+\usepackage[english]{babel}
+\newcommand{\theinvoice}{Invoice}
+\newcommand{\thebusinessid}{Business ID}
+\newcommand{\thevat}{VAT}
+\newcommand{\thedomicile}{Domicile}
+\newcommand{\theemail}{E-mail}
+\newcommand{\thephone}{Tel.}
+\newcommand{\thebank}{Bank}
+\newcommand{\thecomplaints}{Period for complaints}
+\newcommand{\theterms}{Terms of payment}
+\newcommand{\theinterest}{Interest on arrears}
+\newcommand{\thepayerid}{Customer}
+\newcommand{\theservice}{Product/service}
+\newcommand{\theexcleur}{Price \euro}
+\newcommand{\thevatpercent}{VAT \%}
+\newcommand{\thevateur}{VAT \euro}
+\newcommand{\theincleur}{Total price \euro}
+\newcommand{\thetotal}{Total}
+\newcommand{\thepayable}{Invoice total}
+\newcommand{\therecipientsaccount}{Recipient's account number}
+\newcommand{\therecipient}{Recipient}
+\newcommand{\thepayer}{Payer's name and address}
+\newcommand{\thesignature}{Signature}
+\newcommand{\thecredittransfer}{CREDIT TRANSFER}
+\newcommand{\thefromaccount}{From account no.}
+\newcommand{\therefno}{Ref. No.}
+\newcommand{\thedate}{Invoice date}
+\newcommand{\theduedate}{Due date}
+\newcommand{\theduedateup}{Due date} % This is used also in the upper part.
+\newcommand{\theeuro}{Euro}
+\newcommand{\thepaymentsum}{Invoice total}
+\newcommand{\theinvoicenumber}{Invoice number}
+\newcommand{\theinvoicenumberup}{Invoice No.} % Different in the upper part.
+\newcommand{\therefnoreminder}{Please remember to use the invoice number.}
+\newcommand{\thetermsofpayment}{The payment will be cleared for the recipient in accordance with the General terms for payment transmission and only on the basis of the account number given by the payer.}
+\fi % End English language definitions.
+
+% We need to load this after babel package. IT'S NOT WORKING.
+%\usepackage{datetime}
+%\renewcommand{\dateseparator}{.}
+
+% PAYMENT DETAILS
+
+\newcommand{\companyname}{Yritys Oy}
+\newcommand{\companylogo}{pics/logo.pdf}
+\newcommand{\companyperson}{Hemmo Jäsen}
+\newcommand{\companyaddress}{Yritystie 11}
+\newcommand{\companyzip}{40000}
+\newcommand{\companycity}{Jyväskylä}
+\newcommand{\companyid}{7654321-8}
+\newcommand{\companyvat}{FI76543218}
+\newcommand{\companydomicile}{Jyväskylä}
+\newcommand{\companywww}{www.yritys.fi}
+\newcommand{\companyemail}{myynti@yritys.fi}
+\newcommand{\companyphone}{040 000 0000}
+\newcommand{\companybank}{KOP}
+\newcommand{\companyiban}{FI12 3456 7890 1234 56}
+\newcommand{\companybic}{KOPPFIHH}
+\newcommand{\payername}{Matti Meikäläinen}
+\newcommand{\payeraddress}{Meikäläisenkatu 5}
+\newcommand{\payerzip}{00790}
+\newcommand{\payercity}{Helsinki}
+\newcommand{\payerid}{1234567-8}
+\newcommand{\refno}{12 12345}
+\newcommand{\invoicedate}{18.01.2014}
+\newcommand{\duedate}{01.01.2015}
+\newcommand{\invoicenumber}{4321}
+\newcommand{\complaints}{5 pv}
+\newcommand{\terms}{8 pv netto}
+\newcommand{\interest}{10,5\%}
+\newcommand{\paymentsum}{200,00}
+
+\begin{document}
+
+\begin{center}\begin{minipage}[t][175mm][t]{168mm}
+
+\fontsize{12pt}{13pt}\selectfont
+
+% Sender info.
+\parbox[b][30mm][t]{50mm}{\raggedright \companyname\\ \companyperson\\ \companyaddress\\ \companyzip\ \MakeUppercase{\companycity}}
+% Invoice info.
+\hspace{28mm}\parbox[b][30mm][t]{50mm}{\raggedright \MakeUppercase{\theinvoice}\\ \mbox{} \\ \invoicedate}
+% Logo.
+\hfill\parbox[b][30mm][t]{14.5mm}{\includegraphics[width=14.5mm]{\companylogo}}
+
+% Payer address.
+\begin{textblock}{90}(21,50)
+\parbox[t][50mm][t]{90mm}{\raggedright
+\payername\\
+\payeraddress\\
+\payerzip\ \MakeUppercase{\payercity}
+}
+\end{textblock}
+
+% Payment details. TODO: Spacing with translations.
+\fontsize{9pt}{12pt}\selectfont
+\begin{textblock}{90}(98,50)
+\parbox[t][50mm][t]{40mm}{
+\begin{tabular}{l l}
+\theinvoicenumberup: & \invoicenumber\\
+\thepayerid: & \payerid\\
+\thedate: & \invoicedate\\
+\theduedateup: & \duedate
+\end{tabular}
+}
+\hfill
+\parbox[t][50mm][t]{40mm}{
+\begin{tabular}{l l}
+\thepaymentsum: & \paymentsum\ \euro\\
+\theterms: & \terms\\
+\thecomplaints: & \complaints\\
+\theinterest: & \interest
+\end{tabular}
+}
+\end{textblock}
+
+% INVOICE
+
+\vspace{35mm}
+
+\fontsize{12pt}{13pt}\selectfont
+\renewcommand{\arraystretch}{2.0}
+
+\begin{center}
+\begin{tabular}{l r r r r}
+\theservice \hspace{58mm} & \theexcleur & \thevatpercent & \thevateur & \theincleur \\
+\hline
+Tietotekninen konsultointi & 152,00 & 24,00 & 48,00 & 200,00 \\
+\hline
+\thetotal & 152,00 & 24,00 & 48,00 & 200,00 \\
+\textbf{\thepayable} & & & & \textbf{200,00}
+\end{tabular}
+\end{center}
+
+\vfill
+
+% Company information.
+
+\begin{center}
+\fontsize{7pt}{8pt}\selectfont
+\parbox[t][10mm][t]{39mm}{\raggedright \companyname\\ \companyaddress\\ \companyzip\ \MakeUppercase{\companycity}}
+\parbox[t][10mm][t]{44mm}{\raggedright \thebusinessid: \companyid\\ \thevat: \companyvat\\ \thedomicile: \companydomicile}
+\parbox[t][10mm][t]{47mm}{\raggedright \theemail: \companyemail\\ \thephone: \companyphone\\ \companywww}
+\parbox[t][10mm][t]{33mm}{\raggedright \thebank: \companybank\\ IBAN: \companyiban\\ BIC: \companybic}
+\end{center}
+
+\end{minipage}\end{center}
+
+% Bank transfer form at the bottom of the page.
+\noindent \begin{minipage}[b][4in][b]{8in}
+
+\setlength{\unitlength}{1mm}
+\begin{picture}(202.8,210)(0,0)
+
+%%% THE BOX
+
+% Dashed line at the top.
+\linethickness{0.13mm}
+\multiput(0,101.6)(1.016,0){200}{\line(1,0){0.5}}
+
+% Line above Recipient
+\linethickness{0.5mm}
+\put(0,84.666){\line(1,0){203.2}}
+
+% Top left vertical line (Recipient's account and Recipient).
+\linethickness{0.5mm}
+\put(20,69.85){\line(0,1){31.75}}
+
+% Line above Payer's name and address.
+\linethickness{0.5mm}
+\put(0,69.85){\line(1,0){111.76}}
+
+% Middle vertical divisor line.
+\linethickness{0.5mm}
+\put(111.76,27.5167){\line(0,1){74.083}}
+
+% Line above Ref. No.
+\linethickness{0.5mm}
+\put(111.76,44.45){\line(1,0){91.44}}
+
+% Vertical line (Ref. No. and Due date).
+\linethickness{0.5mm}
+\put(127,27.5167){\line(0,1){16.933}}
+
+% Vertical line (Euro).
+\linethickness{0.5mm}
+\put(162.56,27.5167){\line(0,1){8.466}}
+
+% Signature line.
+\linethickness{0.13mm}
+\put(22,40.216){\line(1,0){89.4}}
+
+% Line above From account.
+\linethickness{0.5mm}
+\put(0,35.9833){\line(1,0){203.2}}
+
+% Vertical line (From account).
+\linethickness{0.13mm}
+\put(20,27.5167){\line(0,1){8.466}}
+
+% Bottom line.
+\linethickness{0.5mm}
+\put(0,27.5167){\line(1,0){203.2}}
+
+%%% INFO TEXTS
+
+% Recipient's account.
+\put(3,97){\fontsize{7pt}{8pt}\selectfont \parbox[t][20mm][t]{15mm}{\raggedleft\therecipientsaccount}}
+
+% IBAN.
+\put(22,99){\fontsize{7pt}{8pt}\selectfont IBAN}
+
+% BIC.
+\put(114,99){\fontsize{7pt}{8pt}\selectfont BIC}
+
+% Recipient.
+\put(3,80){\fontsize{7pt}{8pt}\selectfont \parbox[t][20mm][t]{15mm}{\raggedleft\therecipient}}
+
+% Payer information.
+\put(6,65.5){\fontsize{7pt}{8pt}\selectfont \parbox[t][30mm][t]{12mm}{\raggedleft\thepayer}}
+
+% Signature.
+\put(6,41){\fontsize{7pt}{8pt}\selectfont \parbox[t][30mm][t]{12mm}{\raggedleft\thesignature}}
+
+% Credit transfer rotated text.
+\put(0.5,36.5){\fontsize{8pt}{8pt}\selectfont \rotatebox{90}{\parbox[t][5mm][t]{33mm}{\centering\bfseries\thecredittransfer}}}
+
+% From account.
+\put(3,32.5){\fontsize{7pt}{8pt}\selectfont \parbox[t][20mm][t]{15mm}{\raggedleft\thefromaccount}}
+
+% Ref. No.
+\put(113,41){\fontsize{7pt}{8pt}\selectfont \parbox[t][20mm][t]{15mm}{\raggedright\therefno}}
+
+% Due date.
+\put(113,32.5){\fontsize{7pt}{8pt}\selectfont \parbox[t][20mm][t]{15mm}{\raggedright\theduedate}}
+
+% Euro.
+\put(163.5,33.5){\fontsize{7pt}{8pt}\selectfont \parbox[t][20mm][t]{15mm}{\raggedright\theeuro}}
+
+% Terms of payment at the very bottom.
+\put(140,23){\fontsize{6pt}{6pt}\selectfont \parbox[t][25mm][t]{48mm}{\raggedright\thetermsofpayment}}
+
+%%% FILLED IN INFORMATION
+
+% IBAN.
+\put(30,92){\fontsize{9pt}{10pt}\selectfont \companybank \ \companyiban}
+
+% BIC.
+\put(120,92){\fontsize{9pt}{10pt}\selectfont \companybic}
+
+% Recipient.
+\put(30,79.5){\fontsize{9pt}{10pt}\selectfont \parbox[t][30mm][t]{60mm}{\raggedright \MakeUppercase{\companyname}\\ \MakeUppercase{\companyaddress}\\ \MakeUppercase{\companyzip\ \companycity}}}
+
+% Payer.
+\put(30,63){\fontsize{9pt}{10pt}\selectfont \parbox[t][30mm][t]{60mm}{\raggedright \MakeUppercase{\payername}\\ \MakeUppercase{\payeraddress}\\ \MakeUppercase{\payerzip\ \payercity}}}
+
+% Ref. No.
+\put(136,39){\fontsize{9pt}{10pt}\selectfont \refno}
+
+% Due date.
+\put(136,30.5){\fontsize{9pt}{10pt}\selectfont \duedate}
+
+% Euro.
+\put(188,30.5){\fontsize{9pt}{10pt}\selectfont \paymentsum}
+
+% Additional information, invoice number.
+\put(120,78){\fontsize{9pt}{10pt}\selectfont \parbox[t][30mm][t]{60mm}{\begin{tabular}{@{}l l}\MakeUppercase{\theinvoicenumber}: & \invoicenumber\\
+\MakeUppercase{\thepayerid}: & \payerid \end{tabular}}}
+% Reminder to use ref. no. 
+\put(120,55){\fontsize{9pt}{10pt}\selectfont \therefnoreminder}
+
+\end{picture}
+
+\end{minipage}
+
+\end{document}
+
