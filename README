@@ -13,6 +13,11 @@ Fill in the macros in the PAYMENT DETAILS section. Fill in the products or servi
 
 Select language by defining e.g. \def\finnish{}. Text strings are also marked for TRANSLATION in the preamble. 
 
+License
+-------
+
+MIT, see invoice.tex or LICENSE.
+
 References
 ----------
 
